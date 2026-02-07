@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Buy@Me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <header class="header">
+    <span class="app-name">Buy@Me</span>
+  </header>
+  <div class="container">
+    <div class="login-box">
+      <h1>Sign in to Buy@Me</h1>
+      <form class="login-form" autocomplete="on" id="loginForm">
+        <div class="input-group">
+          <label class="input-label" for="email">Email or Username</label>
+          <input class="input-field" autocomplete="username" type="text" id="email" name="email" placeholder="Enter email or username" required>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="password">Password</label>
+          <input class="input-field" autocomplete="current-password" type="password" id="password" name="password" placeholder="Enter password" required>
+        </div>
+        <div class="form-actions">
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+      <div class="signup-link-box">
+        <span class="text">New here?</span>
+        <a href="#" class="signup-link">Create Account</a>
+      </div>
+    </div>
+  </div>
+  <!-- Signup Modal injected by JS -->
+  <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Buy@Me — Secure Checkout</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Use a modern font (fallback to system sans-serifs) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="checkout-page" role="main">
+    <header class="checkout-header">
+      <div class="brand">
+        <svg class="brand-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h18v4H3zM3 9h18v12H3z"/></svg>
+        <span class="brand-name">Buy@Me</span>
+      </div>
+      <div class="trust-inline">
+        <span class="secure">
+          <!-- lock svg -->
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a4 4 0 0 0-4 4v4H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4zM8 10V6a4 4 0 0 1 8 0v4H8z"/></svg>
+          Secure checkout
+        </span>
+      </div>
+    </header>
+
+    <form id="checkoutForm" class="checkout-grid" autocomplete="on" novalidate>
+      <section class="left-col">
+        <fieldset class="card section">
+          <legend>Customer information</legend>
+
+          <label for="fullName" class="input-label">Full name</label>
+          <input id="fullName" name="fullName" type="text" class="input" autocomplete="name" placeholder="Jane Doe" required>
+
+          <label for="email" class="input-label">Email address</label>
+          <input id="email" name="email" type="email" class="input" autocomplete="email" placeholder="you@example.com" required>
+
+          <label for="phone" class="input-label">Phone number</label>
+          <input id="phone" name="phone" type="tel" class="input" autocomplete="tel" placeholder="+91 98765 43210" pattern="^[+0-9 ()-]{7,20}$" required>
+        </fieldset>
+
+        <fieldset class="card section">
+          <legend>Delivery address</legend>
+
+          <label for="addressLine1" class="input-label">House / Flat No</label>
+          <input id="addressLine1" name="addressLine1" type="text" class="input" placeholder="221B / Flat 4B" required>
+
+          <label for="addressLine2" class="input-label">Street / Area</label>
+          <input id="addressLine2" name="addressLine2" type="text" class="input" placeholder="MG Road" required>
+
+          <div class="two-col-row">
+            <div>
+              <label for="city" class="input-label">City</label>
+              <input id="city" name="city" type="text" class="input" placeholder="Bengaluru" required>
+            </div>
+            <div>
+              <label for="state" class="input-label">State</label>
+              <input id="state" name="state" type="text" class="input" placeholder="Karnataka" required>
+            </div>
+          </div>
+
+          <div class="two-col-row">
+            <div>
+              <label for="postalCode" class="input-label">Postal code (Pincode)</label>
+              <input id="postalCode" name="postalCode" type="text" class="input" placeholder="560001" pattern="^[0-9A-Za-z- ]{3,12}$" required>
+            </div>
+            <div>
+              <label for="country" class="input-label">Country</label>
+              <select id="country" name="country" class="input" required>
+                <option value="">Select country</option>
+                <option value="IN" selected>India</option>
+                <option value="US">United States</option>
+                <option value="GB">United Kingdom</option>
+                <!-- extend list as needed -->
+              </select>
+            </div>
+          </div>
+
+          <label class="input-label">Address type</label>
+          <div class="address-type">
+            <label class="radio">
+              <input type="radio" name="addressType" value="home" checked>
+              <span>Home</span>
+            </label>
+            <label class="radio">
+              <input type="radio" name="addressType" value="work">
+              <span>Work</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="card section">
+          <legend>Payment method</legend>
+
+          <div class="payment-option">
+            <div class="payment-left">
+              <!-- cash icon -->
+              <svg aria-hidden="true" width="36" height="36" viewBox="0 0 24 24"><path fill="currentColor" d="M2 7v10h20V7H2zm18 8H4V9h16v6zM6 11h2v2H6z"/></svg>
+            </div>
+            <div class="payment-right">
+              <div class="payment-title">Cash on Delivery (COD)</div>
+              <div class="payment-note">Pay when the product is delivered to you</div>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="security-cues">
+          <div class="cue">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4z"/></svg>
+            <div>
+              <div class="cue-title">7-day return guarantee</div>
+              <div class="cue-sub">Hassle-free returns within 7 days of delivery</div>
+            </div>
+          </div>
+
+          <div class="cue">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2l3 6 6 .5-4.5 4 1 6L12 16l-5.5 3.5 1-6L3 8.5 9 8z"/></svg>
+            <div>
+              <div class="cue-title">Verified seller</div>
+              <div class="cue-sub">Trusted & rated sellers</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <aside class="right-col card order-summary" aria-labelledby="order-heading">
+        <h2 id="order-heading" class="order-title">Order summary</h2>
+
+        <div class="product">
+          <img id="orderProductImage" src="https://via.placeholder.com/140x100.png?text=Product" alt="Product image" class="product-image">
+          <div class="product-info">
+            <div class="product-name" id="orderProductName">Wireless Headphones Model X</div>
+            <div class="product-meta" id="orderProductMeta">1 × Standard</div>
+            <div class="product-price" id="orderProductPrice">$2,499.00</div>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="summary-line">
+          <span>Subtotal</span><span id="orderSubtotal">$2,499.00</span>
+        </div>
+        <div class="summary-line">
+          <span>Delivery charges</span><span id="orderDelivery">$49.00</span>
+        </div>
+        <div class="summary-line total">
+          <span>Total</span><span id="orderTotal">$2,548.00</span>
+        </div>
+
+        <div class="actions">
+          <div class="note">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg>
+            <span>Secure checkout • SSL encrypted</span>
+          </div>
+
+          <button id="confirmBtn" class="btn primary large" type="submit" aria-live="polite">
+            <span class="btn-label">Confirm Order</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div id="statusMessage" class="sr-only" aria-live="polite"></div>
+      </aside>
+    </form>
+
+    <!-- Success overlay -->
+    <div id="successOverlay" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="successTitle">
+      <div class="overlay-card">
+        <div class="success-illustration">
+          <svg width="72" height="72" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" d="M0 0h24v24H0z"/><path fill="#22b573" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm5.2 8.4l-5.6 6a1 1 0 0 1-1.4.0l-3-3a1 1 0 1 1 1.4-1.4l2.3 2.3 4.9-5.3a1 1 0 0 1 1.4 1.4z"/></svg>
+        </div>
+        <h3 id="successTitle">Order placed successfully</h3>
+        <p class="muted">Thank you — your order will be confirmed shortly. We sent a confirmation to the email provided.</p>
+        <div class="overlay-actions">
+          <a href="../home.html" class="btn ghost">Back to Home</a>
+          <button id="closeOverlay" class="btn primary">View Order</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

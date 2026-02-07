@@ -1,0 +1,154 @@
+body {
+    background: var(--bg-light);
+}
+
+.product-page {
+    padding: 140px 0 4rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 1.1fr) minmax(280px, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.product-media {
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+    padding: 1rem;
+}
+
+.product-hero-image {
+    width: 100%;
+    border-radius: 1rem;
+    height: 420px;
+    object-fit: cover;
+}
+
+.product-details {
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+}
+
+.product-breadcrumb {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.product-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0 1rem;
+}
+
+.product-stars {
+    display: flex;
+    gap: 0.15rem;
+}
+
+.product-stars svg {
+    width: 18px;
+    height: 18px;
+}
+
+.product-price-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.discount-pill {
+    background: #fee2e2;
+    color: #b91c1c;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+}
+
+.product-description {
+    color: var(--text-light);
+    margin-bottom: 1.25rem;
+}
+
+.product-features {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.product-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.product-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.product-actions .btn {
+    flex: 1;
+    justify-content: center;
+}
+
+#buyNowBtn {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.25);
+    border: none;
+}
+
+#buyNowBtn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.35);
+}
+
+#buyNowBtn:active {
+    transform: scale(0.98);
+}
+
+.product-shipping {
+    display: grid;
+    gap: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
+    padding-top: 1rem;
+}
+
+@media (max-width: 900px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-page {
+        padding: 120px 0 3rem;
+    }
+
+    .product-hero-image {
+        height: 320px;
+    }
+}
+
+@media (max-width: 600px) {
+    .product-details {
+        padding: 1.5rem;
+    }
+
+    .product-actions {
+        grid-template-columns: 1fr;
+    }
+}

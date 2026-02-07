@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | buy@me</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="product.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="home.html" aria-label="buy@me home" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;">
+                    <img src="https://drive.google.com/uc?export=view&id=1lM3Am9bdJvCpMeah0o12AyXroj94osTF" alt="buy@me logo" style="height:40px;width:auto;border-radius:8px;object-fit:contain;">
+                    <h1 class="logo-text gradient-text" style="margin:0;">buy@me</h1>
+                </a>
+            </div>
+            <div class="header-icons">
+                <a class="btn btn-secondary btn-small" href="home.html">Back to Home</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="product-page">
+        <div class="container product-grid">
+            <div class="product-media">
+                <img id="productImage" alt="Product image" class="product-hero-image">
+            </div>
+            <div class="product-details">
+                <div class="product-breadcrumb">Home / Products / <span id="productNameBreadcrumb">Product</span></div>
+                <h1 id="productName">Product Name</h1>
+                <div class="product-rating-row">
+                    <div id="productStars" class="product-stars"></div>
+                    <span id="productRatingText" class="rating-text">(0.0)</span>
+                </div>
+                <div class="product-price-row">
+                    <span id="productPrice" class="current-price">$0</span>
+                    <span id="productOriginalPrice" class="original-price"></span>
+                    <span id="productDiscount" class="discount-pill"></span>
+                </div>
+                <p id="productDescription" class="product-description"></p>
+                <ul id="productFeatures" class="product-features"></ul>
+                <div class="product-actions">
+                    <button class="btn btn-primary" id="addToCartBtn">
+                        <i data-lucide="shopping-cart"></i>
+                        Add to Cart
+                    </button>
+                    <button class="btn btn-secondary" id="buyNowBtn">
+                        <i data-lucide="credit-card"></i>
+                        Buy Me
+                    </button>
+                    <button class="btn btn-secondary" id="addToWishlistBtn">
+                        <i data-lucide="heart"></i>
+                        Add to Wishlist
+                    </button>
+                </div>
+                <div class="product-shipping">
+                    <div><strong>Free Delivery:</strong> 2-4 business days</div>
+                    <div><strong>Easy Returns:</strong> 7-day return policy</div>
+                    <div><strong>Secure Payment:</strong> 100% protected checkout</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="product.js"></script>
+</body>
+</html>
