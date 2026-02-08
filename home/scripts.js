@@ -1,7 +1,7 @@
-// ====================================
+﻿// ====================================
 // PRODUCT DATA
 // ====================================
-const productsData = {
+let productsData = {
     trending: [
         {
             name: 'Premium Smartphone X Pro',
@@ -163,6 +163,26 @@ const productsData = {
         ]
     }
 };
+
+async function loadProductsFromApi() {
+    try {
+        const response = await fetch('http://localhost:5000/api/products', {
+            method: 'GET'
+        });
+        if (!response.ok) {
+            throw new Error('Products API unavailable');
+        }
+        const data = await response.json();
+        if (data && data.trending && data.bestSellers && data.newArrivals && data.recommended) {
+            productsData = data;
+            return true;
+        }
+        return false;
+    } catch (err) {
+        console.warn('Failed to load products from API:', err);
+        return false;
+    }
+}
 
 // ====================================
 // WISHLIST STATE
@@ -502,7 +522,7 @@ function setupEventListeners() {
         if (!product) return;
 
         localStorage.setItem('buyme_selected_product', JSON.stringify(product));
-        window.location.href = 'payments/payment.html';
+        window.location.href = '../payments/payment.html';
     });
 
     // Product card click -> product details page
@@ -518,7 +538,7 @@ function setupEventListeners() {
         if (!product) return;
 
         localStorage.setItem('buyme_selected_product', JSON.stringify(product));
-        window.location.href = 'product.html';
+        window.location.href = '../product.html';
     });
 
     // Category buttons
@@ -618,7 +638,7 @@ function setupEventListeners() {
                 const product = findProductByQuery(query);
                 if (product) {
                     localStorage.setItem('buyme_selected_product', JSON.stringify(product));
-                    window.location.href = 'product.html';
+                    window.location.href = '../product.html';
                 } else {
                     showNotification(`No results for "${query}"`, 'error');
                 }
@@ -632,7 +652,7 @@ function setupEventListeners() {
             const product = findProductByName(productName);
             if (!product) return;
             localStorage.setItem('buyme_selected_product', JSON.stringify(product));
-            window.location.href = 'product.html';
+            window.location.href = '../product.html';
         });
 
         document.addEventListener('click', (e) => {
@@ -664,8 +684,8 @@ function setupEventListeners() {
     }
 
     function openAuthPage(mode) {
-        const returnTo = encodeURIComponent('../home.html');
-        const url = `login/login.html?mode=${encodeURIComponent(mode)}&return=${returnTo}`;
+        const returnTo = encodeURIComponent('/home/index.html');
+        const url = `/login/login.html?mode=${encodeURIComponent(mode)}&return=${returnTo}`;
         window.location.href = url;
     }
 
@@ -693,7 +713,7 @@ function setupEventListeners() {
         updateAccountUI();
         setAccountDropdown(false);
         showNotification('Logged out', 'success');
-        window.location.href = 'login/login.html?mode=login&return=../home.html';
+        window.location.href = '../login/login.html?mode=login&return=../home/index.html';
     });
 
     document.addEventListener('click', (e) => {
@@ -836,10 +856,19 @@ window.addEventListener('resize', adjustProductGrid);
 // ====================================
 // INITIALIZE APP
 // ====================================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    if (window.location.protocol === 'file:') {
+        showNotification('Run the app via http://localhost:5000 for login/DB to work', 'error');
+    }
+
     // Initialize Lucide icons
     lucide.createIcons();
-    
+
+    const apiLoaded = await loadProductsFromApi();
+    if (!apiLoaded) {
+        showNotification('Using local product data (API offline)', 'error');
+    }
+
     // Render products
     renderProducts();
 
@@ -860,7 +889,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showNotification('Welcome to buy@me!', 'success');
     }, 500);
     
-    console.log('%c🛍️ buy@me E-Commerce Platform', 'font-size: 20px; font-weight: bold; color: #6366f1;');
+    console.log('%cðŸ›ï¸ buy@me E-Commerce Platform', 'font-size: 20px; font-weight: bold; color: #6366f1;');
     console.log('%cPremium shopping experience at your fingertips', 'font-size: 14px; color: #64748b;');
 });
 
@@ -956,7 +985,9 @@ document.addEventListener('keydown', (e) => {
 console.log('%c ', 'font-size: 100px; background: linear-gradient(135deg, #6366f1, #ec4899); padding: 50px;');
 console.log('%cbuy@me - Premium E-Commerce', 'font-size: 24px; font-weight: bold; background: linear-gradient(135deg, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent;');
 console.log('%cVersion 1.0.0', 'color: #64748b; font-size: 12px;');
-console.log('%c\n📦 Products Loaded: ' + (productsData.trending.length + productsData.bestSellers.length + productsData.newArrivals.length + productsData.recommended.length), 'color: #10b981; font-size: 14px;');
-console.log('%c🎨 Premium UI/UX Design', 'color: #6366f1; font-size: 14px;');
-console.log('%c🚀 Optimized Performance', 'color: #f59e0b; font-size: 14px;');
-console.log('%c📱 Fully Responsive', 'color: #ec4899; font-size: 14px;');
+console.log('%c\nðŸ“¦ Products Loaded: ' + (productsData.trending.length + productsData.bestSellers.length + productsData.newArrivals.length + productsData.recommended.length), 'color: #10b981; font-size: 14px;');
+console.log('%cðŸŽ¨ Premium UI/UX Design', 'color: #6366f1; font-size: 14px;');
+console.log('%cðŸš€ Optimized Performance', 'color: #f59e0b; font-size: 14px;');
+console.log('%cðŸ“± Fully Responsive', 'color: #ec4899; font-size: 14px;');
+
+

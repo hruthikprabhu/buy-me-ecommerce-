@@ -1,4 +1,4 @@
-// Product details page
+﻿// Product details page
 (function () {
     const product = (() => {
         try {
@@ -9,7 +9,7 @@
     })();
 
     if (!product) {
-        window.location.href = 'home.html';
+        window.location.href = 'home/index.html';
         return;
     }
 
@@ -78,3 +78,5 @@
 
     lucide.createIcons();
 })();
+
+

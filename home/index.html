@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>buy@me - Premium E-Commerce Platform</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container header-content">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html" aria-label="buy@me home" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;">
+                    <h1 class="logo-text gradient-text" style="margin:0;">buy@me</h1>
+                </a>
+            </div>
+
+            <!-- Search Bar (Desktop) -->
+            <div class="search-bar desktop-search">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" placeholder="Search for products, brands, and more..." class="search-input">
+                <div class="search-dropdown" hidden></div>
+            </div>
+
+            <!-- Right Icons -->
+            <div class="header-icons">
+            <!-- Mobile Menu -->
+            <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn">
+            <i data-lucide="menu"></i>
+            </button>
+            
+            <!-- Wishlist -->
+            <button class="icon-btn desktop-icon" id="wishlistBtn">
+            <i data-lucide="heart"></i>
+            <span class="badge badge-red">0</span>
+            </button>
+            
+            <!-- Login/Account Dropdown -->
+            <div class="account-area">
+            <button class="icon-btn desktop-icon" id="accountBtn" aria-haspopup="true" aria-expanded="false">
+            <i data-lucide="user"></i>
+            </button>
+            <div class="account-dropdown" id="accountDropdown" hidden>
+            <div class="auth-view" id="authLoggedOut">
+            <div class="auth-actions">
+            <button class="btn btn-primary btn-small" id="openLogin">Login</button>
+            <button class="btn btn-secondary btn-small" id="openSignup">Sign Up</button>
+            </div>
+            </div>
+            <div class="auth-view" id="authLoggedIn" hidden>
+            <div class="user-row">
+            <i data-lucide="smile"></i>
+            <span id="usernameDisplay">User</span>
+            </div>
+            <button class="btn btn-secondary btn-small" id="logoutBtn">Logout</button>
+            </div>
+            </div>
+            </div>
+            
+            <!-- Cart -->
+            <button class="icon-btn" id="cartBtn">
+            <i data-lucide="shopping-cart"></i>
+            <span class="badge badge-primary">0</span>
+            </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="search-bar mobile-search">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" placeholder="Search products..." class="search-input">
+            <div class="search-dropdown" hidden></div>
+        </div>
+    </header>
+
+    <!-- CATEGORY MENU -->
+    <div class="category-menu" id="categoryMenu">
+        <div class="container">
+            <div class="category-scroll">
+                <button class="category-card" data-category="electronics">
+                    <div class="category-icon bg-gradient-blue">
+                        <i data-lucide="laptop"></i>
+                    </div>
+                    <span>Electronics</span>
+                </button>
+
+                <button class="category-card" data-category="fashion">
+                    <div class="category-icon bg-gradient-pink">
+                        <i data-lucide="shirt"></i>
+                    </div>
+                    <span>Fashion</span>
+                </button>
+
+                <button class="category-card" data-category="tv">
+                    <div class="category-icon bg-gradient-purple">
+                        <i data-lucide="tv"></i>
+                    </div>
+                    <span>TV & Appliances</span>
+                </button>
+
+                <button class="category-card" data-category="teddy">
+                    <div class="category-icon bg-gradient-red">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <span>Teddy Bears</span>
+                </button>
+
+                <button class="category-card" data-category="mobiles">
+                    <div class="category-icon bg-gradient-green">
+                        <i data-lucide="smartphone"></i>
+                    </div>
+                    <span>Mobiles</span>
+                </button>
+
+                <button class="category-card" data-category="clothes">
+                    <div class="category-icon bg-gradient-orange">
+                        <i data-lucide="shirt"></i>
+                    </div>
+                    <span>Clothes</span>
+                </button>
+
+                <button class="category-card" data-category="accessories">
+                    <div class="category-icon bg-gradient-violet">
+                        <i data-lucide="watch"></i>
+                    </div>
+                    <span>Accessories</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-bg-animation">
+            <div class="hero-blob hero-blob-1"></div>
+            <div class="hero-blob hero-blob-2"></div>
+        </div>
+
+        <div class="container hero-content">
+            <!-- Badge -->
+            <div class="hero-badge">
+                <i data-lucide="sparkles"></i>
+                <span>New Season Sale</span>
+            </div>
+
+            <!-- Heading -->
+            <h1 class="hero-title">
+                Mega Sale<br>
+                <span class="hero-highlight">Up to 60% Off</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="hero-subtitle">
+                Discover the latest trends in fashion, electronics, and more.
+                Premium quality at unbeatable prices.
+            </p>
+
+            <!-- CTA Buttons -->
+            <!-- Stats -->
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-value">10K+</div>
+                    <div class="stat-label">Products</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">50K+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">200+</div>
+                    <div class="stat-label">Brands</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave -->
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#f8fafc"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- PRODUCT SECTIONS -->
+    <main>
+        <!-- Electronics -->
+        <section class="product-section" id="electronicsSection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-blue">Electronics</h2>
+                        <p class="section-subtitle">Top picks in gadgets and tech</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="electronicsProducts"></div>
+            </div>
+        </section>
+
+        <!-- Fashion -->
+        <section class="product-section" id="fashionSection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-pink">Fashion</h2>
+                        <p class="section-subtitle">Fresh styles for every season</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="fashionProducts"></div>
+            </div>
+        </section>
+
+        <!-- TV & Appliances -->
+        <section class="product-section" id="tvSection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-purple">TV & Appliances</h2>
+                        <p class="section-subtitle">Upgrade your home setup</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="tvProducts"></div>
+            </div>
+        </section>
+
+        <!-- Teddy Bears -->
+        <section class="product-section" id="teddySection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-red">Teddy Bears</h2>
+                        <p class="section-subtitle">Soft, cuddly, and lovable</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="teddyProducts"></div>
+            </div>
+        </section>
+
+        <!-- Mobiles -->
+        <section class="product-section" id="mobilesSection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-green">Mobiles</h2>
+                        <p class="section-subtitle">Latest smartphones and accessories</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="mobilesProducts"></div>
+            </div>
+        </section>
+
+        <!-- Clothes -->
+        <section class="product-section" id="clothesSection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-orange">Clothes</h2>
+                        <p class="section-subtitle">Everyday essentials and classics</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="clothesProducts"></div>
+            </div>
+        </section>
+
+        <!-- Accessories -->
+        <section class="product-section" id="accessoriesSection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-violet">Accessories</h2>
+                        <p class="section-subtitle">Finish your look in style</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="accessoriesProducts"></div>
+            </div>
+        </section>
+
+        <!-- Trending Products -->
+        <section class="product-section" id="trendingSection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-blue">Trending Products</h2>
+                        <p class="section-subtitle">Most popular items this week</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="trendingProducts"></div>
+            </div>
+        </section>
+
+        <!-- Best Sellers -->
+        <section class="product-section" id="bestSellersSection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-pink">Best Sellers</h2>
+                        <p class="section-subtitle">Top-rated products by our customers</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="bestSellersProducts"></div>
+            </div>
+        </section>
+
+        <!-- New Arrivals -->
+        <section class="product-section" id="newArrivalsSection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-green">New Arrivals</h2>
+                        <p class="section-subtitle">Fresh products just for you</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="newArrivalsProducts"></div>
+            </div>
+        </section>
+
+        <!-- Recommended -->
+        <section class="product-section" id="recommendedSection">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title gradient-text-orange">Recommended for You</h2>
+                        <p class="section-subtitle">Personalized picks based on your interests</p>
+                    </div>
+                    <button class="view-all-btn desktop-btn">
+                        View All
+                        <i data-lucide="arrow-right"></i>
+                    </button>
+                </div>
+                <div class="products-grid" id="recommendedProducts"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <!-- Newsletter -->
+        <div class="newsletter-section">
+            <div class="container newsletter-content">
+                <div class="newsletter-text">
+                    <h3 class="newsletter-title">Subscribe to our Newsletter</h3>
+                    <p class="newsletter-subtitle">Get the latest updates on new products and exclusive offers!</p>
+                </div>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email" class="newsletter-input">
+                    <button class="btn btn-primary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Footer -->
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-brand">
+                        <h3 class="gradient-text">buy@me</h3>
+                        <p class="footer-description">
+                            Your ultimate destination for premium products. We bring you the
+                            best selection of electronics, fashion, and lifestyle products.
+                        </p>
+                        <div class="footer-contact">
+                            <div class="contact-item">
+                                <i data-lucide="map-pin"></i>
+                                <span>123 Shopping Street, NY 10001</span>
+                            </div>
+                            <div class="contact-item">
+                                <i data-lucide="phone"></i>
+                                <span>+1 (555) 123-4567</span>
+                            </div>
+                            <div class="contact-item">
+                                <i data-lucide="mail"></i>
+                                <span>support@buyatme.com</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Company Links -->
+                    <div class="footer-links">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Support Links -->
+                    <div class="footer-links">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Returns</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Legal Links -->
+                    <div class="footer-links">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                            <li><a href="#">Sitemap</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <p class="copyright">Â© 2026 buy@me. All rights reserved.</p>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="twitter"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="youtube"></i></a>
+                    </div>
+
+                    <div class="payment-methods">
+                        <span>We Accept:</span>
+                        <div class="payment-badges">
+                            <span class="payment-badge">VISA</span>
+                            <span class="payment-badge">MC</span>
+                            <span class="payment-badge">AMEX</span>
+                            <span class="payment-badge">PP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="authModal" hidden>
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+            <div class="modal-header">
+                <h3 id="authTitle">Login</h3>
+                <button class="icon-btn" id="closeAuthModal" aria-label="Close">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="authUsername">Username</label>
+                    <input type="text" id="authUsername" required placeholder="Enter username" />
+                </div>
+                <div class="form-group">
+                    <label for="authPassword">Password</label>
+                    <input type="password" id="authPassword" required placeholder="Enter password" />
+                </div>
+                <button type="submit" class="btn btn-primary" id="authSubmit">Continue</button>
+                <p class="form-switch" id="authSwitch">
+                    <span>New here?</span> <a href="#" id="switchToSignup">Create an account</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+

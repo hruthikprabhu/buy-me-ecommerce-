@@ -1,0 +1,16 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "main": "home/backend/server.js",
+  "scripts": {
+    "start": "node home/backend/server.js"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx-ops": "^0.30.3",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "mysql2": "^3.16.3"
+  }
+}

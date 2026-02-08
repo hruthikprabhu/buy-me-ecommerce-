@@ -1,4 +1,4 @@
-// Simple in-memory and localStorage backed auth demo
+﻿// Simple in-memory and localStorage backed auth demo
 (function(){
   const $ = (sel, root=document) => root.querySelector(sel);
   const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
@@ -8,7 +8,7 @@
   const requestedMode = (params.get('mode') || '').toLowerCase();
   const returnParam = params.get('return') || '';
   const returnTo = (() => {
-    const safeDefault = '../home.html';
+    const safeDefault = '../home/index.html';
     if (!returnParam) return safeDefault;
     if (returnParam.startsWith('http') || returnParam.startsWith('//')) return safeDefault;
     return returnParam;
@@ -21,15 +21,9 @@
   // Modal elements (created below)
   let modal, backdrop, form, closeBtn, submitBtn, modeSwitcher;
 
-  // Storage keys
-  const USERS_KEY = 'buyme_users';
   const SESSION_KEY = 'buyme_current_user';
 
   // Utilities
-  function loadUsers(){
-    try { return JSON.parse(localStorage.getItem(USERS_KEY)) || []; } catch(e){ return []; }
-  }
-  function saveUsers(list){ localStorage.setItem(USERS_KEY, JSON.stringify(list)); }
   function setSession(user){ localStorage.setItem(SESSION_KEY, JSON.stringify(user)); }
   function getSession(){ try { return JSON.parse(localStorage.getItem(SESSION_KEY)); } catch(e){ return null; } }
   function clearSession(){ localStorage.removeItem(SESSION_KEY); }
@@ -53,7 +47,7 @@
       <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
         <div class="modal-header">
           <div class="modal-title" id="signupTitle">Create Account</div>
-          <button class="close-btn" aria-label="Close">✕</button>
+          <button class="close-btn" aria-label="Close">âœ•</button>
         </div>
         <form id="signupForm">
           <div class="grid">
@@ -64,6 +58,10 @@
             <div class="input-group full">
               <label class="input-label" for="emailNew">Email</label>
               <input class="input-field" type="email" id="emailNew" name="email" placeholder="name@example.com" required>
+            </div>
+            <div class="input-group full">
+              <label class="input-label" for="phoneNew">Phone</label>
+              <input class="input-field" type="tel" id="phoneNew" name="phone" placeholder="Enter phone number" required>
             </div>
             <div class="input-group">
               <label class="input-label" for="passwordNew">New Password</label>
@@ -96,30 +94,38 @@
     closeBtn.addEventListener('click', close);
     $('#cancelSignup', modal).addEventListener('click', close);
 
-    form.addEventListener('submit', (e)=>{
+    form.addEventListener('submit', async (e)=>{
       e.preventDefault();
       const student = $('#studentName', modal).value.trim();
       const email = $('#emailNew', modal).value.trim().toLowerCase();
+      const phone = $('#phoneNew', modal).value.trim();
       const pass = $('#passwordNew', modal).value;
       const confirm = $('#passwordConfirm', modal).value;
 
       if(!student){ showToast('Student name is required', 'error'); return; }
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ showToast('Enter a valid email', 'error'); return; }
+      if(!phone){ showToast('Phone is required', 'error'); return; }
       if(pass.length < 6){ showToast('Password must be at least 6 characters', 'error'); return; }
       if(pass !== confirm){ showToast('Passwords do not match', 'error'); return; }
 
-      const users = loadUsers();
-      if(users.some(u => u.email === email)){
-        showToast('Account already exists for this email', 'error');
-        return;
+      try {
+        const response = await fetch('/api/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: student, email, phone, password: pass })
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          showToast(data.message || 'Signup failed', 'error');
+          return;
+        }
+        setSession({ student: data.name, email: data.email });
+        showToast('Account created. Signed in as ' + data.name, 'success');
+        close();
+        window.location.href = returnTo;
+      } catch (err) {
+        showToast('Signup failed. Please try again.', 'error');
       }
-      const user = { student, email, password: pass, createdAt: Date.now() };
-      users.push(user);
-      saveUsers(users);
-      setSession({ student, email });
-      showToast('Account created. Signed in as ' + student, 'success');
-      close();
-      window.location.href = returnTo;
     });
 
     return { open, close };
@@ -128,19 +134,29 @@
   let modalApi = null;
 
   // Login form behavior
-  loginForm.addEventListener('submit', (e)=>{
+  loginForm.addEventListener('submit', async (e)=>{
     e.preventDefault();
     const id = $('#email').value.trim();
     const pass = $('#password').value;
+    if(!id || !pass){ showToast('Enter your email/name and password', 'error'); return; }
 
-    const idLower = id.toLowerCase();
-    const users = loadUsers();
-    const user = users.find(u => u.email === idLower || u.student.toLowerCase() === idLower);
-    if(!user){ showToast('Account not found', 'error'); return; }
-    if(user.password !== pass){ showToast('Invalid password', 'error'); return; }
-    setSession({ student: user.student, email: user.email });
-    showToast('Welcome back, ' + user.student + '!', 'success');
-    window.location.href = returnTo;
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ identifier: id, password: pass })
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        showToast(data.message || 'Login failed', 'error');
+        return;
+      }
+      setSession({ student: data.name, email: data.email });
+      showToast('Welcome back, ' + data.name + '!', 'success');
+      window.location.href = returnTo;
+    } catch (err) {
+      showToast('Login failed. Please try again.', 'error');
+    }
   });
 
   // Signup link opens modal
@@ -162,3 +178,5 @@
     showToast('Signed in as ' + session.student);
   }
 })();
+
+
